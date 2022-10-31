@@ -3,7 +3,7 @@ import LoginForm from '../components/pure/loginForm';
 
 const Login = () => {
     return (
-        <div>
+        <div className='container mx-auto h-screen flex'>
             <LoginForm />
         </div>
     );

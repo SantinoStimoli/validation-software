@@ -1,9 +1,10 @@
 import React from 'react';
+import Resume from '../components/container/resume';
 
 const Home = () => {
     return (
-        <div>
-            Home
+        <div className='container mx-auto'>
+            <Resume />
         </div>
     );
 }

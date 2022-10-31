@@ -1,28 +1,33 @@
 
-import { Route, Routes } from "react-router-dom";
-import Fines from "../pages/fines";
+import { NavLink, Route, Routes } from "react-router-dom";
 import Home from "../pages/home";
 import Login from "../pages/login";
 import NotFound from "../pages/notFound";
-import Register from "../pages/register";
 import Results from "../pages/result";
 import Video from "../pages/video";
 
 const AppRouting = () => {
 
     return (
-        <Routes>
+        <div>
+            <ul className="flex">
+                <li><NavLink to={'/sesion'}>Log In</NavLink></li>
+                <li><NavLink to={'/curso'}>Presentation</NavLink></li>
+                <li><NavLink to={'/inicio'}>Home</NavLink></li>
+                <li><NavLink to={'/resultado'}>Results</NavLink></li>
+            </ul>
 
-            <Route path={"/"} element={<Home />} />
-            <Route path={"/login"} element={<Login />} />
-            <Route path={"/register"} element={<Register />} />
-            <Route path={"/presentation"} element={<Video />} />
-            <Route path={"/fines"} element={<Fines />} />
-            <Route path={"/fines/results"} element={<Results />} />
+            <Routes>
 
-            <Route path={"*"} element={<NotFound />} />
+                <Route path={"/sesion"} element={<Login />} />
+                <Route path={"/curso"} element={<Video />} />
+                <Route path={"/inicio"} element={<Home />} />
+                <Route path={"/resultado"} element={<Results />} />
 
-        </Routes>
+                <Route path={"*"} element={<NotFound />} />
+
+            </Routes>
+        </div>
     );
 }
 

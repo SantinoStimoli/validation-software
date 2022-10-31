@@ -1,3 +1,36 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+    font-family: 'general';
+    src: url('../resources/Montserrat_Complete/Fonts/OTF/Montserrat-SemiBold.otf');
+}
+
+:root {
+    --fondo-1: #1B262C;
+    --fondo-2: #243239;
+    --detalles-1: #93d9f2;
+    --detalles-2: #112D4E;
+}
+
+* {
+    font-family: general;
+}
+
+form {
+    background: var(--fondo-2);
+}
+
+body {
+    background: var(--fondo-1);
+}
+
+
+/* D E S A R R O L L O */
+
+.video {
+    @apply mx-auto;
+    width: 1120px;
+    height: 630px;
+}
