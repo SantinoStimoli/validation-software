@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Results = ({ pass }) => {
     return (
-        <div className='w-full h-screen bg-black bg-opacity-50 fixed top-0 flex justify-center items-center'>
+        <div className='w-full h-screen bg-p bg-opacity-100 fixed top-0 left-0 flex justify-center items-center mx-auto'>
             <div className='modal-results py-10 px-7 rounded-lg'>
                 {pass ?
                     <div className='flex justify-center flex-col text-center'>

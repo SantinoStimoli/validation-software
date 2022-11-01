@@ -6,18 +6,22 @@ import Camera from '../pure/camera';
 import Question from '../pure/question';
 import '../../styles/test.css'
 import Results from '../pure/results';
+import Alert from '../pure/alert';
 
 const TestComponent = () => {
 
     const [pass, setPass] = useState(null);
     const [testCompleted, setTestCompleted] = useState(false);
-    const [calification, setCalification] = useState(0);
+    const [cause, setCause] = useState('');
+    const [calification, setCalification] = useState(10);
 
     const [initializing, setInitializing] = useState(false);
     const videoWidth = 300;
     const videoHeigth = 225;
     const videoRef = useRef();
     const canvasRef = useRef();
+    let userOut = 0
+    let strikes = 0
 
     const questions = [
         new QuestionText(1, '¿Qué significa la doble línea continua amarilla?', [
@@ -26,7 +30,7 @@ const TestComponent = () => {
             new Option('Significa que solo pueden circular vehículos particulares.', false),
         ]),
         new QuestionText(2, '¿Por qué está prohibido el uso de telefonía celular para el conductor durante la circulación?', [
-            new Option('disminuye su capacidad atencional y limita el sentido de la audición, aumentando el tiempo de reacción.', false),
+            new Option('Disminuye su capacidad atencional y limita el sentido de la audición, aumentando el tiempo de reacción.', false),
             new Option('Debido a que el conductor debe mantener ambas manos comprometidas en la accion de conducir, el equipo celular reduciria la capacidad de maniobrar.', false),
             new Option('Ambas respuestas son correctas.', true),
         ]),
@@ -35,7 +39,7 @@ const TestComponent = () => {
             new Option('Estado de euforia y de falsa seguridad en sí mismo.', true),
             new Option('Reducción del tiempo de reacción.', false),
         ]),
-        new QuestionText(4, '¿Cuáles son los números de emergencia que todo usuario de la vía pública debe conocer con el objetivo de poder llamar y pedir ayuda ante un accidente de cualquier índole?', [
+        new QuestionText(4, '¿Cuáles son los números de emergencia para pedir ayuda ante un accidente?', [
             new Option('211 y/o 109.', false),
             new Option('112 y/o 110.', false),
             new Option('911 y/o 107.', true),
@@ -73,6 +77,7 @@ const TestComponent = () => {
     ]
 
     useEffect(() => {
+        setCause('')
         const loadModels = async () => {
             const MODEL_URL = process.env.PUBLIC_URL + '/models'
             setInitializing(true)
@@ -85,8 +90,6 @@ const TestComponent = () => {
             ]).then(cargarCamara)
         }
         loadModels()
-
-        setCalification(1)
     }, []);
 
     navigator.getMedia = (navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia);
@@ -103,7 +106,7 @@ const TestComponent = () => {
     };
 
     const handleVideo = () => {
-        setInterval(async () => {
+        let interval = setInterval(async () => {
             if (initializing) {
                 setInitializing(false)
             }
@@ -117,6 +120,30 @@ const TestComponent = () => {
             const resizedDetections = faceapi.resizeResults(detections, size)
             canvasRef.current.getContext('2d').clearRect(0, 0, size, size)
             faceapi.draw.drawDetections(canvasRef.current, resizedDetections)
+
+            if (detections.length === 0) {
+                userOut++
+            } else if (detections.length >= 2) {
+                strikes++
+                setCause('Dos personas haciendo el test')
+            } else {
+                userOut = 0
+            }
+
+            if (userOut >= 500) {
+                strikes++
+                userOut = 0
+                setCause('Te haz salido de foco')
+            }
+
+            if (strikes >= 4) {
+                userOut = 0
+                strikes = 0
+                setTestCompleted(true)
+                setPass(false)
+                clearInterval(interval)
+            }
+
         }, 10);
     };
 
@@ -132,6 +159,8 @@ const TestComponent = () => {
     return (
         <div className='test'>
             <Camera canvasRef={canvasRef} handleVideo={handleVideo} videoHeigth={videoHeigth} videoRef={videoRef} videoWidth={videoWidth} />
+            {cause !== '' ? <Alert cause={cause} /> : undefined}
+
             <form>
                 {questions.map((question, index) => (
                     <Question key={index} questionIndex={index} question={question.question} options={question.options} />

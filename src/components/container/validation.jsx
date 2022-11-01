@@ -11,6 +11,7 @@ const ValidationComponent = () => {
     const videoHeigth = 450;
     const videoRef = useRef();
     const canvasRef = useRef();
+    let validate;
 
     useEffect(() => {
         const loadModels = async () => {
@@ -23,11 +24,6 @@ const ValidationComponent = () => {
                 faceapi.nets.faceRecognitionNet.loadFromUri(MODEL_URL),
                 faceapi.nets.faceExpressionNet.loadFromUri(MODEL_URL),
             ]).then(cargarCamara)
-                .then(() => {
-                    setTimeout(() => {
-                        setValidating(false)
-                    }, 10000);
-                })
         }
         loadModels()
     }, []);
@@ -46,7 +42,7 @@ const ValidationComponent = () => {
     };
 
     const handleVideo = () => {
-        setInterval(async () => {
+        let interval = setInterval(async () => {
             if (initializing) {
                 setInitializing(false)
             }
@@ -60,6 +56,20 @@ const ValidationComponent = () => {
             const resizedDetections = faceapi.resizeResults(detections, size)
             canvasRef.current.getContext('2d').clearRect(0, 0, size, size)
             faceapi.draw.drawDetections(canvasRef.current, resizedDetections)
+
+
+
+            if (detections.length === 1) {
+                validate++
+            } else {
+                validate = 0
+            }
+
+            if (validate >= 200) {
+                setValidating(false)
+                clearInterval(interval)
+            }
+
         }, 10);
     };
 
