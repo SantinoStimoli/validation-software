@@ -60,3 +60,11 @@ body {
 .bg-p {
     background: var(--fondo-1);
 }
+
+.bg-p2 {
+    background: var(--fondo-2);
+}
+
+.none {
+    display: none;
+}
