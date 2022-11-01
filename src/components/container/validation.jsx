@@ -65,7 +65,7 @@ const ValidationComponent = () => {
                 validate = 0
             }
 
-            if (validate >= 200) {
+            if (validate >= 100) {
                 setValidating(false)
                 clearInterval(interval)
             }

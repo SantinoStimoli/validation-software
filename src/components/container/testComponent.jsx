@@ -14,8 +14,11 @@ const TestComponent = () => {
     const [testCompleted, setTestCompleted] = useState(false);
     const [cause, setCause] = useState('');
     const [calification, setCalification] = useState(10);
-
     const [initializing, setInitializing] = useState(false);
+    const [message, setMessage] = useState('');
+
+    const [strikesData, setStrikesData] = useState(0);
+
     const videoWidth = 300;
     const videoHeigth = 225;
     const videoRef = useRef();
@@ -126,25 +129,26 @@ const TestComponent = () => {
             } else if (detections.length >= 2) {
                 strikes++
                 setCause('Dos personas haciendo el test')
+                setStrikesData(strikes)
             } else {
                 userOut = 0
             }
 
-            if (userOut >= 500) {
+            if (userOut >= 100) {
                 strikes++
                 userOut = 0
                 setCause('Te haz salido de foco')
+                setStrikesData(strikes)
             }
 
             if (strikes >= 4) {
                 userOut = 0
-                strikes = 0
+                setMessage('Haz alcanzado el límite de strikes')
                 setTestCompleted(true)
                 setPass(false)
                 clearInterval(interval)
             }
-
-        }, 10);
+        });
     };
 
     const submitedTest = async () => {
@@ -156,10 +160,16 @@ const TestComponent = () => {
         }
     };
 
+    function otherUser() {
+        setMessage('El usuario ha cambiado')
+        setTestCompleted(true)
+        setPass(false)
+    }
+
     return (
-        <div className='test'>
+        <div className='test' onDoubleClick={() => otherUser()}>
             <Camera canvasRef={canvasRef} handleVideo={handleVideo} videoHeigth={videoHeigth} videoRef={videoRef} videoWidth={videoWidth} />
-            {cause !== '' ? <Alert cause={cause} strikes={strikes} /> : undefined}
+            {cause !== '' ? <Alert cause={cause} strikes={strikesData} /> : undefined}
 
             <form>
                 {questions.map((question, index) => (
@@ -170,8 +180,8 @@ const TestComponent = () => {
             <button onClick={submitedTest} className='hover:opacity-100' >Enviar respuestas</button>
 
 
-            {testCompleted ? <Results pass={pass} /> : null}
-        </div>
+            {testCompleted ? <Results pass={pass} message={message} /> : null}
+        </div >
     );
 }
 
