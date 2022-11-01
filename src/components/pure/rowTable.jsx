@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { moneyFormater } from '../../service/moneyFormat';
 import { numberFormater } from '../../service/numberFormat';
+import { FINE_STATE } from '../../models/fineState.enum';
 
 const rowTable = ({ fine }) => {
     return (
@@ -28,7 +29,7 @@ const rowTable = ({ fine }) => {
                 {moneyFormater(fine.finalValue)}
             </td>
             <td className="py-5 px-4 tracking-tighter">
-                <Link to={'/'} className="font-medium underline">Curso</Link>
+                <Link to={'/curso/introduccion'} className={"font-medium underline " + (fine.state === FINE_STATE.PAID ? 'pointer-events-none opacity-75' : undefined)}>Curso</Link>
             </td>
         </tr>
     );

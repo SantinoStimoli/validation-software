@@ -37,15 +37,15 @@ tbody a {
     background: var(--fondo-2);
 }
 
-::-webkit-scrollbar {
+table::-webkit-scrollbar {
     height: 10px;
 }
 
-::-webkit-scrollbar-track {
+table::-webkit-scrollbar-track {
     background: transparent;
 }
 
-::-webkit-scrollbar-thumb {
+table::-webkit-scrollbar-thumb {
     @apply rounded-md;
     background-color: var(--fondo-2);
 }

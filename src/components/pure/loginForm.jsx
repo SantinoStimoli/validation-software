@@ -1,9 +1,9 @@
 import React from 'react';
 import '../../styles/login.css'
 import Logo from '../../resources/logo.webp'
+import { Link, useLocation } from 'react-router-dom';
 
 const LoginForm = () => {
-
     return (
         <form className='text-white form-login mx-auto m-auto rounded-xl py-10 px-8 flex flex-col shadow-md login'>
             <div className='logo mb-10 flex items-center justify-center'>
@@ -33,10 +33,9 @@ const LoginForm = () => {
                 <label className="text-sm font-medium">Subir imagen: huella dactilar</label>
                 <input className="py-1 w-full text-sm bg-gray-50 rounded-lg border border-gray-300 cursor-pointer focus:outline-none" id="file_input" type="file" required />
             </div>
-
-            <button type="submit" className="text-white opacity-90 hover:opacity-100 focus:ring-4 font-medium rounded-lg text-sm px-3 py-2.5 focus:outline-none mt-8 mx-auto transition-all">Iniciar sesión</button>
-
-
+            <Link to={'/sesion/validation'} className='mx-auto'>
+                <button type="submit" className="text-white opacity-90 hover:opacity-100 focus:ring-4 font-medium rounded-lg text-sm px-3 py-2.5 focus:outline-none mt-8 transition-all">Iniciar sesión</button>
+            </Link>
         </form>
     );
 }
