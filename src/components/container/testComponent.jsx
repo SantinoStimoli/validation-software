@@ -159,7 +159,7 @@ const TestComponent = () => {
     return (
         <div className='test'>
             <Camera canvasRef={canvasRef} handleVideo={handleVideo} videoHeigth={videoHeigth} videoRef={videoRef} videoWidth={videoWidth} />
-            {cause !== '' ? <Alert cause={cause} /> : undefined}
+            {cause !== '' ? <Alert cause={cause} strikes={strikes} /> : undefined}
 
             <form>
                 {questions.map((question, index) => (

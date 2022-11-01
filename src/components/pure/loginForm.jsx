@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../styles/login.css'
 import Logo from '../../resources/logo.webp'
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const LoginForm = () => {
     return (
@@ -33,7 +33,7 @@ const LoginForm = () => {
                 <label className="text-sm font-medium">Subir imagen: huella dactilar</label>
                 <input className="py-1 w-full text-sm bg-gray-50 rounded-lg border border-gray-300 cursor-pointer focus:outline-none" id="file_input" type="file" required />
             </div>
-            <Link to={'/sesion/validation'} className='mx-auto'>
+            <Link to={'/validation-software/sesion/validation'} className='mx-auto'>
                 <button type="submit" className="text-white opacity-90 hover:opacity-100 focus:ring-4 font-medium rounded-lg text-sm px-3 py-2.5 focus:outline-none mt-8 transition-all">Iniciar sesión</button>
             </Link>
         </form>

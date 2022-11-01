@@ -86,7 +86,7 @@ const ValidationComponent = () => {
                 : <div className='flex flex-col text-white text-center mt-5'>
                     <span>Validación completada!</span>
                     <span>Ya puedes iniciar sesión</span>
-                    <Link className='buttonLink mt-10' to={'/inicio'}>Iniciar sesión</Link>
+                    <Link className='buttonLink mt-10' to={'/validation-software/inicio'}>Iniciar sesión</Link>
                 </div>}
 
         </div>
