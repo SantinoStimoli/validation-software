@@ -7,11 +7,11 @@ import { finesFilterContext, userContext } from '../container/resume';
 const Table = () => {
 
     const user = useContext(userContext);
-    const fines = user.fines;
     const pending = useContext(finesFilterContext);
 
-    const pendingFines = fines.filter(fine => fine.state !== FINE_STATE.PAID);
-    const paidFines = fines.filter(fine => fine.state === FINE_STATE.PAID);
+    const fines = user !== null && user.fines;
+    const pendingFines = user !== null && fines.filter(fine => fine.state !== FINE_STATE.PAID);
+    const paidFines = user !== null && fines.filter(fine => fine.state === FINE_STATE.PAID);
 
     return (
         <div className="overflow-x-auto relative shadow-md rounded-md min-w-full">
@@ -58,6 +58,7 @@ const Table = () => {
                         <tr>
                             <td colSpan={8} className='text-center text-lg py-5'>Realiza una busqueda y aquí veras los resultados</td>
                         </tr>
+
                     }
                 </tbody>
 
