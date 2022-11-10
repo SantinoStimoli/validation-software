@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import RowTable from './rowTable';
 import '../../styles/table.css'
 import { FINE_STATE } from '../../models/fineState.enum';
+import { finesFilterContext, userContext } from '../container/resume';
 
-const Table = ({ fines, pending, search }) => {
+const Table = () => {
 
-    const pendingFines = fines.filter(fine => fine.state !== FINE_STATE.PAID)
-    const paidFines = fines.filter(fine => fine.state === FINE_STATE.PAID)
+    const user = useContext(userContext);
+    const fines = user.fines;
+    const pending = useContext(finesFilterContext);
+
+    const pendingFines = fines.filter(fine => fine.state !== FINE_STATE.PAID);
+    const paidFines = fines.filter(fine => fine.state === FINE_STATE.PAID);
 
     return (
         <div className="overflow-x-auto relative shadow-md rounded-md min-w-full">
@@ -44,19 +49,20 @@ const Table = ({ fines, pending, search }) => {
                 </thead>
 
                 <tbody >
-                    {search ?
+                    {user !== null ?
 
                         (pending ? pendingFines : paidFines).map((fine, index) => (
                             <RowTable key={index} fine={fine} />
                         ))
                         :
-                        <td colSpan={8} className='text-center text-lg py-5'>Realiza una busqueda y aquí veras los resultados</td>
+                        <tr>
+                            <td colSpan={8} className='text-center text-lg py-5'>Realiza una busqueda y aquí veras los resultados</td>
+                        </tr>
                     }
                 </tbody>
 
             </table>
         </div>
-
     );
 }
 
