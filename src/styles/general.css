@@ -36,10 +36,6 @@
     font-family: general;
 }
 
-form {
-    background: var(--fondo-2);
-}
-
 body {
     background: var(--fondo-1);
 }
@@ -67,4 +63,12 @@ body {
 
 .none {
     display: none;
+}
+
+.buscador {
+    color: var(--detalles-1);
+}
+
+.color-p {
+    color: var(--detalles-1);
 }

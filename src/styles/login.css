@@ -35,6 +35,6 @@ input[type=file]:valid {
     width: 100px;
 }
 
-.login button {
+#button-submit {
     background: var(--detalles-1) !important;
 }

@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useReducer, useState } from 'react';
 import { Fine } from '../../models/fine.class';
 import { FINE_STATE } from '../../models/fineState.enum';
 import { User } from '../../models/user.class';
 import GeneralStatsTable from '../pure/generalStatsTable';
+import Search from '../pure/search';
 import Table from '../pure/table';
 
 const Resume = () => {
@@ -21,13 +22,15 @@ const Resume = () => {
     const testUser = new User('Santino', 'Stimoli', 'santinostimoli@gmail.com', 45238867, testFines)
 
     const [pending, setPending] = useState(true);
-
-
+    const [search, setSearch] = useState(false);
 
     return (
         <div>
-            <GeneralStatsTable user={testUser} pending={pending} setPending={setPending} />
-            <Table fines={testUser.fines} pending={pending} />
+            <Search setSearch={setSearch} />
+            {search &&
+                <GeneralStatsTable user={testUser} pending={pending} setPending={setPending} />
+            }
+            <Table fines={testUser.fines} pending={pending} search={search} />
         </div>
     );
 }

@@ -11,7 +11,7 @@ const ValidationComponent = () => {
     const videoHeigth = 450;
     const videoRef = useRef();
     const canvasRef = useRef();
-    let validate;
+    let validate = 0;
 
     useEffect(() => {
         const loadModels = async () => {
@@ -65,7 +65,7 @@ const ValidationComponent = () => {
                 validate = 0
             }
 
-            if (validate >= 100) {
+            if (validate >= 50) {
                 setValidating(false)
                 clearInterval(interval)
             }
@@ -86,8 +86,9 @@ const ValidationComponent = () => {
                 : <div className='flex flex-col text-white text-center mt-5'>
                     <span>Validación completada!</span>
                     <span>Ya puedes iniciar sesión</span>
-                    <Link className='buttonLink mt-10' to={'/validation-software/inicio'}>Iniciar sesión</Link>
-                </div>}
+                    <Link className='buttonLink mt-10' to={'/validation-software/curso/introduccion'}>Iniciar sesión</Link>
+                </div>
+            }
 
         </div>
     );

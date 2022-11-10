@@ -13,33 +13,37 @@ const GeneralStatsTable = ({ user, pending, setPending }) => {
 
     return (
         <div className='general-stats'>
-            <div className='md:grid grid-cols-4 mt-10 mb-5'>
-                <div className='col-span-2 rounded-md py-4 px-5 flex boxs justify-around'>
-                    <div>
-                        <p>Usuario:</p>
-                        <span>{user.name} {user.lastName}</span>
+            <div className='md:grid grid-cols-4 mt-10 mb-5 gap-2'>
+                <div className='col-span-3 rounded-md py-4 px-5 flex boxs'>
+                    <div className='md:flex justify-around w-1/2 max-md:my-2'>
+                        <div className='text-center'>
+                            <p>Usuario:</p>
+                            <span>{user.name} {user.lastName}</span>
+                        </div>
+                        <div className='text-center max-md:mt-5'>
+                            <p>Cedula:</p>
+                            <span>{numberFormater(user.identification)}</span>
+                        </div>
                     </div>
-                    <div className='mx-5'>
-                        <p>Cedula:</p>
-                        <span>{numberFormater(user.identification)}</span>
-                    </div>
-                    <div>
-                        <p>Multas: <span>{pendingFines.length}</span></p>
-                        <p>Total: <span>{moneyFormater(totalPendingFines)}</span></p>
+                    <div className='md:flex justify-around w-1/2 max-md:my-2'>
+                        <div className='text-center'>
+                            <p>Usuario:</p>
+                            <span>{user.name} {user.lastName}</span>
+                        </div>
+                        <div className='text-center max-md:mt-5'>
+                            <p>Cedula:</p>
+                            <span>{numberFormater(user.identification)}</span>
+                        </div>
                     </div>
                 </div>
-                <div className='col-span-2 grid grid-cols-2 max-md:mt-2'>
-                    <div className='rounded-md md:mx-3 py-4 px-5 boxs max-md:mr-1'>
-                        <p>Cuenta:</p>
-                        <button className='underline opacity-90 hover:opacity-100'>Guardar estado</button>
-                    </div>
+                <div className='col-span-1 max-md:mt-2'>
                     {pending ?
-                        <div className='rounded-md py-4 px-5 boxs max-md:ml-1'>
+                        <div className='rounded-md py-4 px-5 boxs flex justify-center flex-col text-center'>
                             <p>Historial:</p>
                             <button onClick={() => setPending(!pending)} className='underline opacity-90 hover:opacity-100'>Ver historial ({paidFines.length})</button>
                         </div>
                         :
-                        <div className='rounded-md py-4 px-5 boxs max-md:ml-1'>
+                        <div className='rounded-md py-4 px-5 boxs flex justify-center flex-col text-center'>
                             <p>Pendientes:</p>
                             <button onClick={() => setPending(!pending)} className='underline opacity-90 hover:opacity-100'>Ver Pendientes ({pendingFines.length})</button>
                         </div>}

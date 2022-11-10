@@ -29,7 +29,11 @@ const rowTable = ({ fine }) => {
                 {moneyFormater(fine.finalValue)}
             </td>
             <td className="py-5 px-4 tracking-tighter">
-                <Link to={'/validation-software/curso/introduccion'} className={"font-medium underline " + (fine.state === FINE_STATE.PAID ? 'pointer-events-none opacity-75' : undefined)}>Curso</Link>
+                {fine.state !== FINE_STATE.PAID ?
+                    <Link to={'/validation-software/pago'} className={"font-medium underline " + (fine.state === FINE_STATE.PAID ? 'pointer-events-none opacity-75' : undefined)}>Pagar</Link>
+                    :
+                    'Pagado'
+                }
             </td>
         </tr>
     );

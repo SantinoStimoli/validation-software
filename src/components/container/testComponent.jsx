@@ -14,6 +14,7 @@ const TestComponent = () => {
     const [testCompleted, setTestCompleted] = useState(false);
     const [cause, setCause] = useState('');
     const [calification, setCalification] = useState(10);
+    const [endVideo, setEndVideo] = useState(false);
     const [initializing, setInitializing] = useState(false);
     const [message, setMessage] = useState('');
 
@@ -81,20 +82,23 @@ const TestComponent = () => {
 
     useEffect(() => {
         setCause('')
-        const loadModels = async () => {
-            const MODEL_URL = process.env.PUBLIC_URL + '/models'
-            setInitializing(true)
-
-            Promise.all([
-                faceapi.nets.tinyFaceDetector.loadFromUri(MODEL_URL),
-                faceapi.nets.faceLandmark68Net.loadFromUri(MODEL_URL),
-                faceapi.nets.faceRecognitionNet.loadFromUri(MODEL_URL),
-                faceapi.nets.faceExpressionNet.loadFromUri(MODEL_URL),
-            ]).then(cargarCamara)
-        }
         loadModels()
+        setTimeout(() => {
+            setEndVideo(true)
+        }, 10000);
     }, []);
 
+    const loadModels = async () => {
+        const MODEL_URL = process.env.PUBLIC_URL + '/models'
+        setInitializing(true)
+
+        Promise.all([
+            faceapi.nets.tinyFaceDetector.loadFromUri(MODEL_URL),
+            faceapi.nets.faceLandmark68Net.loadFromUri(MODEL_URL),
+            faceapi.nets.faceRecognitionNet.loadFromUri(MODEL_URL),
+            faceapi.nets.faceExpressionNet.loadFromUri(MODEL_URL),
+        ]).then(cargarCamara)
+    }
     navigator.getMedia = (navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia);
 
     const cargarCamara = () => {
@@ -127,7 +131,7 @@ const TestComponent = () => {
             if (detections.length === 0) {
                 userOut++
             } else if (detections.length >= 2) {
-                strikes++
+                strikes = 4
                 setCause('Dos personas haciendo el test')
                 setStrikesData(strikes)
             } else {
@@ -208,16 +212,6 @@ const TestComponent = () => {
         content.classList.add("visible");
     };
 
-    window.addEventListener("load", () => {
-        startCountdown();
-        timerInterval = setInterval(startCountdown, 1000);
-    });
-
-
-
-
-
-
     return (
         <div className='test' onDoubleClick={() => otherUser()}>
             <Camera canvasRef={canvasRef} handleVideo={handleVideo} videoHeigth={videoHeigth} videoRef={videoRef} videoWidth={videoWidth} />
@@ -227,7 +221,7 @@ const TestComponent = () => {
             <h1 className='text-white text-5xl text-center mt-10'>Presta atención al video y contesta las preguntas, el temporizador ya esta corriendo.</h1>
 
 
-            <iframe className='video my-10 rounded-lg mx-auto' src="https://www.youtube.com/embed/DWqEcJCAauM" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+            <iframe onLoad={() => timerInterval = setInterval(startCountdown, 1000)} className='video my-10 rounded-lg mx-auto' src="https://www.youtube.com/embed/DWqEcJCAauM" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
 
 
             <section id="timer" aria-live="polite" className='fixed top-2 left-2'>
@@ -240,13 +234,13 @@ const TestComponent = () => {
             </section>
 
 
-            <form>
+            {endVideo && <form>
                 {questions.map((question, index) => (
                     <Question key={index} questionIndex={index} question={question.question} options={question.options} />
                 ))}
 
-            </form>
-            <button onClick={submitedTest} className='hover:opacity-100' >Enviar respuestas</button>
+                <button onClick={submitedTest} className='hover:opacity-100' >Enviar respuestas</button>
+            </form>}
 
 
             {testCompleted ? <Results pass={pass} message={message} /> : null}
