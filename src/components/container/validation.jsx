@@ -101,7 +101,7 @@ const ValidationComponent = () => {
                     <Link className='buttonLink mt-10' to={'/validation-software/curso/introduccion'}>Iniciar sesión</Link>
                 </div>)
                 :
-                <Results pass={null} message={'Validación no pasada'} />
+                <Results pass={null} message={'Validación fallida'} />
             }
 
             {payValidation && <PayValidation />}
