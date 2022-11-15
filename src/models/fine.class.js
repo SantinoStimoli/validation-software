@@ -2,7 +2,7 @@ import { FINE_STATE } from "./fineState.enum";
 
 export class Fine {
 
-    number = "";
+    id = "";
     date = "";
     licensePlate = ""
     departament = "";
@@ -11,9 +11,10 @@ export class Fine {
     value = "";
     interest = "";
     finalValue = "";
+    testValue = "";
 
-    constructor(number, date, licensePlate, departament, infringement, state, value, interest) {
-        this.number = number;
+    constructor(id, date, licensePlate, departament, infringement, state, value, interest) {
+        this.id = id;
         this.date = date;
         this.licensePlate = licensePlate;
         this.departament = departament;
@@ -22,6 +23,7 @@ export class Fine {
         this.value = value
         this.interest = interest
         this.finalValue = value + (interest * value / 100)
+        this.testValue = infringement.toLowerCase().includes('c') ? 58500 : 112500
     }
 
 }

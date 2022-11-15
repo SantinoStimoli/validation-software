@@ -1,14 +1,14 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { moneyFormater } from '../../service/moneyFormat';
 import { numberFormater } from '../../service/numberFormat';
 import { FINE_STATE } from '../../models/fineState.enum';
 
-const rowTable = ({ fine }) => {
+const rowTable = ({ fine, userId }) => {
+
     return (
         <tr >
             <th scope="row" className="py-5 px-4 tracking-tighter font-medium whitespace-nowrap text-white">
-                {numberFormater(fine.number)}
+                {numberFormater(fine.id)}
             </th>
             <td className="py-5 px-4 tracking-tighter">
                 {fine.date}
@@ -26,11 +26,11 @@ const rowTable = ({ fine }) => {
                 {fine.state}
             </td>
             <td className="py-5 px-4 tracking-tighter">
-                {moneyFormater(fine.finalValue)}
+                {moneyFormater(fine.testValue)}
             </td>
             <td className="py-5 px-4 tracking-tighter">
                 {fine.state !== FINE_STATE.PAID ?
-                    <Link to={'/validation-software/pago'} className={"font-medium underline " + (fine.state === FINE_STATE.PAID ? 'pointer-events-none opacity-75' : undefined)}>Pagar</Link>
+                    <Link to={`/validation-software/cedula=${userId}&numeroDeMulta=${fine.id}`} className={"font-medium underline " + (fine.state === FINE_STATE.PAID ? 'pointer-events-none opacity-75' : undefined)}>Pagar</Link>
                     :
                     'Pagado'
                 }

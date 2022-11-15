@@ -9,9 +9,9 @@ const Table = () => {
     const user = useContext(userContext);
     const pending = useContext(finesFilterContext);
 
-    const fines = user !== null && user.fines;
-    const pendingFines = user !== null && fines.filter(fine => fine.state !== FINE_STATE.PAID);
-    const paidFines = user !== null && fines.filter(fine => fine.state === FINE_STATE.PAID);
+    const fines = user !== null && user !== undefined && user.fines;
+    const pendingFines = user !== null && user !== undefined && fines.filter(fine => fine.state !== FINE_STATE.PAID);
+    const paidFines = user !== null && user !== undefined && fines.filter(fine => fine.state === FINE_STATE.PAID);
 
     return (
         <div className="overflow-x-auto relative shadow-md rounded-md min-w-full">
@@ -39,7 +39,7 @@ const Table = () => {
                             Estado
                         </th>
                         <th scope="col" className="py-7 px-4">
-                            Valor Neto
+                            Valor Curso
                         </th>
                         <th scope="col" className="py-7 px-4">
                             Curso
@@ -49,15 +49,20 @@ const Table = () => {
                 </thead>
 
                 <tbody >
-                    {user !== null ?
+                    {user !== null && user !== undefined ?
 
                         (pending ? pendingFines : paidFines).map((fine, index) => (
-                            <RowTable key={index} fine={fine} />
+                            <RowTable key={index} fine={fine} userId={user.identification} />
                         ))
                         :
-                        <tr>
-                            <td colSpan={8} className='text-center text-lg py-5'>Realiza una busqueda y aquí veras los resultados</td>
-                        </tr>
+                        user === null ?
+                            <tr>
+                                <td colSpan={8} className='text-center text-lg py-5'>Realiza una busqueda y aquí veras los resultados</td>
+                            </tr>
+                            :
+                            <tr>
+                                <td colSpan={8} className='text-center text-lg py-5'>El usuario que buscas no esta registrado</td>
+                            </tr>
 
                     }
                 </tbody>

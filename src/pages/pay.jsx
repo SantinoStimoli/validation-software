@@ -1,10 +1,10 @@
 import React from 'react';
-import PayForm from '../components/pure/payForm';
+import PayComponent from '../components/container/pay';
 
 const Pay = () => {
     return (
-        <div className='container h-screen mx-auto flex items-center justify-center'>
-            <PayForm />
+        <div className='container mx-auto h-screen'>
+            <PayComponent />
         </div>
     );
 }
