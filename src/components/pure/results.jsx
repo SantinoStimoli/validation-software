@@ -20,7 +20,7 @@ const Results = ({ pass, message }) => {
                         </div>
                     }
                     <p className='mb-5 text-white text-sm'>Te enviaremos un mail con la información y la documentación correspondiente</p>
-                    <Link className='buttonLink mb-0' to={'/validation-software/inicio'}>Volver al inicio</Link>
+                    <Link className='buttonLink mb-0' to={'/validation-software/'}>Volver al inicio</Link>
                 </div>
             </div>
         </div>

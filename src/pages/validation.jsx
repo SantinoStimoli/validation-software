@@ -3,7 +3,7 @@ import ValidationComponent from '../components/container/validation';
 
 const Validation = () => {
     return (
-        <div className='container h-screen mx-auto flex items-center justify-center'>
+        <div className='h-screen'>
             <ValidationComponent />
         </div>
     );

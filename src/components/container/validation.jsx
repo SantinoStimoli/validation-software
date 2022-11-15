@@ -2,6 +2,7 @@ import * as faceapi from 'face-api.js';
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import CameraValidation from '../pure/cameraValidation';
+import PayValidation from '../pure/payValidation';
 import Results from '../pure/results';
 
 const ValidationComponent = () => {
@@ -9,6 +10,7 @@ const ValidationComponent = () => {
     const [initializing, setInitializing] = useState(false);
     const [validating, setValidating] = useState(true);
     const [validated, setValidated] = useState(null);
+    const [payValidation, setPayValidation] = useState(true);
     const videoWidth = 600;
     const videoHeigth = 450;
     const videoRef = useRef();
@@ -29,6 +31,10 @@ const ValidationComponent = () => {
             ]).then(cargarCamara)
         }
         loadModels()
+
+        setTimeout(() => {
+            setPayValidation(false)
+        }, 3000);
     }, []);
 
     navigator.getMedia = (navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia);
@@ -80,7 +86,7 @@ const ValidationComponent = () => {
     };
 
     return (
-        <div className='flex flex-col justify-center' onDoubleClick={() => { out = 1 }}>
+        <div className='flex flex-col justify-center h-screen' onDoubleClick={() => { out = 1 }}>
             <CameraValidation canvasRef={canvasRef} handleVideo={handleVideo} videoHeigth={videoHeigth} videoRef={videoRef} videoWidth={videoWidth} />
 
             {validated === null ? (validating ?
@@ -97,6 +103,8 @@ const ValidationComponent = () => {
                 :
                 <Results pass={null} message={'Validación no pasada'} />
             }
+
+            {payValidation && <PayValidation />}
         </div>
     );
 }

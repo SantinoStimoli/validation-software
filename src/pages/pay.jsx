@@ -3,7 +3,7 @@ import PayComponent from '../components/container/pay';
 
 const Pay = () => {
     return (
-        <div className='container mx-auto h-screen'>
+        <div className='container mx-auto mt-5'>
             <PayComponent />
         </div>
     );
