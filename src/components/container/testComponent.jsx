@@ -138,7 +138,7 @@ const TestComponent = () => {
                 userOut = 0
             }
 
-            if (userOut >= 500) {
+            if (userOut >= 100) {
                 strikes++
                 userOut = 0
                 setCause('Te haz salido de foco')
