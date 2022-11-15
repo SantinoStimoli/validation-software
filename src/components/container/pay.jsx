@@ -64,17 +64,19 @@ const PayComponent = () => {
                         <b className='text-lg tracking-tighter color-p'> {selectedFine.infringement}.</b>
                     </p>
                 </div>
-                <div className='mb-3'>
-                    <p className='tracking-tighter'>
-                        El valor final de la multa es de
-                        <b className='text-lg tracking-tighter color-p'> {moneyFormater(selectedFine.finalValue)} </b>
-                    </p>
-                </div>
-                <div className='mb-3 text-2xl'>
-                    <p className='tracking-tighter'>
-                        El valor del curso alcanza los
-                        <b className='tracking-tighter color-p'> {moneyFormater(selectedFine.testValue)} </b>
-                    </p>
+                <div className='mb-5 text-2xl'>
+                    <div>
+                        <p className='tracking-tighter'>
+                            El descuento en caso de pasar el curso es del
+                            <b className='tracking-tighter color-p'> {selectedFine.discount}% </b>
+                        </p>
+                    </div>
+                    <div>
+                        <p className='tracking-tighter'>
+                            El valor del curso alcanza los
+                            <b className='tracking-tighter color-p'> {moneyFormater(selectedFine.testValue)} </b>
+                        </p>
+                    </div>
                 </div>
                 <p className='tracking-tighter'>Luego de pagar la multa pasaremos a la etapa de verificación donde pondremos a prueba tus capacidades con un video y un par de preguntas que ayudaran a disminuir el total de la multa. Las preguntas deben ser respondidas por el dueño de la multa, por lo que verificaremos su identidad mediante el uso de su camara</p>
             </div>

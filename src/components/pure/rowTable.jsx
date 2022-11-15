@@ -11,6 +11,9 @@ const rowTable = ({ fine, userId }) => {
                 {numberFormater(fine.id)}
             </th>
             <td className="py-5 px-4 tracking-tighter">
+                {fine.infringement}
+            </td>
+            <td className="py-5 px-4 tracking-tighter">
                 {fine.date}
             </td>
             <td className="py-5 px-4 tracking-tighter">
@@ -18,9 +21,6 @@ const rowTable = ({ fine, userId }) => {
             </td>
             <td className="py-5 px-4 tracking-tighter">
                 {fine.departament}
-            </td>
-            <td className="py-5 px-4 tracking-tighter">
-                {fine.infringement}
             </td>
             <td className="py-5 px-4 tracking-tighter">
                 {fine.state}

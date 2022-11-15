@@ -2,16 +2,19 @@ import * as faceapi from 'face-api.js';
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import CameraValidation from '../pure/cameraValidation';
+import Results from '../pure/results';
 
 const ValidationComponent = () => {
 
     const [initializing, setInitializing] = useState(false);
     const [validating, setValidating] = useState(true);
+    const [validated, setValidated] = useState(null);
     const videoWidth = 600;
     const videoHeigth = 450;
     const videoRef = useRef();
     const canvasRef = useRef();
     let validate = 0;
+    let out = 0;
 
     useEffect(() => {
         const loadModels = async () => {
@@ -57,12 +60,15 @@ const ValidationComponent = () => {
             canvasRef.current.getContext('2d').clearRect(0, 0, size, size)
             faceapi.draw.drawDetections(canvasRef.current, resizedDetections)
 
-
-
             if (detections.length === 1) {
                 validate++
             } else {
                 validate = 0
+            }
+
+            if (out !== 0) {
+                setValidated(false)
+                clearInterval(interval)
             }
 
             if (validate >= 50) {
@@ -74,10 +80,10 @@ const ValidationComponent = () => {
     };
 
     return (
-        <div className='flex flex-col justify-center'>
+        <div className='flex flex-col justify-center' onDoubleClick={() => { out = 1 }}>
             <CameraValidation canvasRef={canvasRef} handleVideo={handleVideo} videoHeigth={videoHeigth} videoRef={videoRef} videoWidth={videoWidth} />
 
-            {validating ?
+            {validated === null ? (validating ?
                 <div className='flex flex-col text-white text-center mt-5'>
                     <span>Espera unos segundos...</span>
                     <span>Estamos verificando tu identidad...</span>
@@ -87,9 +93,10 @@ const ValidationComponent = () => {
                     <span>Validación completada!</span>
                     <span>Ya puedes iniciar sesión</span>
                     <Link className='buttonLink mt-10' to={'/validation-software/curso/introduccion'}>Iniciar sesión</Link>
-                </div>
+                </div>)
+                :
+                <Results pass={null} message={'Validación no pasada'} />
             }
-
         </div>
     );
 }

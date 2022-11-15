@@ -16,7 +16,7 @@ const GeneralStatsTable = ({ setPending }) => {
     return (
         <div className='general-stats'>
             <div className='md:grid grid-cols-4 mt-10 mb-5 gap-2'>
-                <div className='col-span-3 rounded-md py-4 px-5 flex boxs'>
+                <div className='col-span-4 rounded-md py-4 px-5 flex boxs'>
                     <div className='md:flex justify-around w-1/2 max-md:my-2'>
                         <div className='text-center'>
                             <p>Usuario:</p>
@@ -37,10 +37,6 @@ const GeneralStatsTable = ({ setPending }) => {
                             <span>{moneyFormater(obtainTotalPendingFines(pendingFines))}</span>
                         </div>
                     </div>
-                </div>
-                <div className='col-span-1 max-md:mt-2 rounded-md py-4 px-5 boxs flex justify-center flex-col text-center'>
-                    <p>{pending ? 'Historial:' : 'Pendientes:'}</p>
-                    <button onClick={() => setPending(!pending)} className='underline opacity-90 hover:opacity-100'>{pending ? 'Ver historial:' : 'Ver pendientes:'} ({(pending ? paidFines : pendingFines).length})</button>
                 </div>
             </div>
         </div>

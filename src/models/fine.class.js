@@ -12,6 +12,7 @@ export class Fine {
     interest = "";
     finalValue = "";
     testValue = "";
+    discount = 0;
 
     constructor(id, date, licensePlate, departament, infringement, state, value, interest) {
         this.id = id;
@@ -22,6 +23,7 @@ export class Fine {
         this.state = state
         this.value = value
         this.interest = interest
+        this.discount = 50
         this.finalValue = value + (interest * value / 100)
         this.testValue = infringement.toLowerCase().includes('c') ? 58500 : 112500
     }

@@ -21,7 +21,10 @@ const Table = () => {
 
                     <tr>
                         <th scope="col" className="py-7 px-4">
-                            Multa
+                            Comparendo
+                        </th>
+                        <th scope="col" className="py-7 px-4">
+                            Infracción
                         </th>
                         <th scope="col" className="py-7 px-4">
                             Fecha
@@ -30,10 +33,7 @@ const Table = () => {
                             Placa
                         </th>
                         <th scope="col" className="py-7 px-4">
-                            Secretaria
-                        </th>
-                        <th scope="col" className="py-7 px-4">
-                            Infracción
+                            Departamento
                         </th>
                         <th scope="col" className="py-7 px-4">
                             Estado
