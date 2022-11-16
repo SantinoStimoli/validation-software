@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import Home from "../pages/home";
 import Intro from "../pages/intro";
 import Login from "../pages/login";
+import Mail from "../pages/mail";
 import NotFound from "../pages/notFound";
 import Pay from "../pages/pay";
 import Test from "../pages/test";
@@ -13,9 +14,7 @@ const AppRouting = () => {
     return (
         <Routes>
 
-            <Route path={"/validation-software"} element={<Home />} />
-            <Route path={"/validation-software/cedula=:id&numeroDeMulta=:fine"} element={<Pay />} />
-            <Route path={"/validation-software/login"} element={<Login />} />
+            <Route path={"/validation-software"} element={<Mail />} />
             <Route path={"/validation-software/validation"} element={<Validation />} />
             <Route path={"/validation-software/curso/introduccion"} element={<Intro />} />
             <Route path={"/validation-software/curso/test"} element={<Test />} />

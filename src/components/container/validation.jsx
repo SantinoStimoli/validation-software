@@ -11,12 +11,12 @@ const ValidationComponent = () => {
     const [validating, setValidating] = useState(true);
     const [validated, setValidated] = useState(null);
     const [payValidation, setPayValidation] = useState(true);
+    const [out, setOut] = useState(false);
     const videoWidth = 600;
     const videoHeigth = 450;
     const videoRef = useRef();
     const canvasRef = useRef();
     let validate = 0;
-    let out = 0;
 
     useEffect(() => {
         const loadModels = async () => {
@@ -72,12 +72,12 @@ const ValidationComponent = () => {
                 validate = 0
             }
 
-            if (out !== 0) {
+            if (out) {
                 setValidated(false)
                 clearInterval(interval)
             }
 
-            if (validate >= 50) {
+            if (validate >= 100) {
                 setValidating(false)
                 clearInterval(interval)
             }
@@ -86,11 +86,13 @@ const ValidationComponent = () => {
     };
 
     return (
-        <div className='flex flex-col justify-center h-screen' onDoubleClick={() => { out = 1 }}>
+        <div className='flex flex-col justify-center h-screen'>
             <CameraValidation canvasRef={canvasRef} handleVideo={handleVideo} videoHeigth={videoHeigth} videoRef={videoRef} videoWidth={videoWidth} />
 
             {validated === null ? (validating ?
-                <div className='flex flex-col text-white text-center mt-5'>
+                <div className='flex flex-col text-white text-center mt-5' onClick={() => {
+                    setValidated();
+                }}>
                     <span>Espera unos segundos...</span>
                     <span>Estamos verificando tu identidad...</span>
                 </div>
@@ -103,8 +105,6 @@ const ValidationComponent = () => {
                 :
                 <Results pass={null} message={'Validación fallida'} />
             }
-
-            {payValidation && <PayValidation />}
         </div>
     );
 }

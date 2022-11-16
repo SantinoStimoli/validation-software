@@ -83,9 +83,6 @@ const TestComponent = () => {
     useEffect(() => {
         setCause('')
         loadModels()
-        setTimeout(() => {
-            setEndVideo(true)
-        }, 10000);
     }, []);
 
     const loadModels = async () => {
@@ -220,9 +217,11 @@ const TestComponent = () => {
 
             <h1 className='text-white text-5xl text-center mt-10'>Presta atención al video y contesta las preguntas, el temporizador ya esta corriendo.</h1>
 
+            {!endVideo && <div>
+                <iframe onLoad={() => timerInterval = setInterval(startCountdown, 1000)} className='video my-10 rounded-lg mx-auto' src="https://www.youtube.com/embed/DWqEcJCAauM" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
 
-            <iframe onLoad={() => timerInterval = setInterval(startCountdown, 1000)} className='video my-10 rounded-lg mx-auto' src="https://www.youtube.com/embed/DWqEcJCAauM" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-
+                <button onClick={() => setEndVideo(!endVideo)} className='hover:opacity-100' >Ver preguntas</button>
+            </div>}
 
             <section id="timer" aria-live="polite" className='fixed top-2 left-2'>
                 <div className="timer-container text-4xl text-white bg-p2 px-4 py-2 rounded-lg">
