@@ -1,70 +1,20 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+Este software diseñado como presentacion para una empresa colombiana encargada del manejo de multas utiliza la cámara activada de su dispositivo al iniciar el test para detectar y verificar la presencia constante del usuario, evitando cambios de persona o la presencia de más de un individuo durante la evaluación. Esta tecnología avanzada garantiza la integridad y la equidad en cada prueba, brindando resultados precisos y confiables a nuestros clientes.
 
-In the project directory, you can run:
+Con este software, estamos comprometidos en ofrecer un servicio de calidad y transparente. La detección de presencia en tiempo real asegura la autenticidad de los resultados, generando confianza tanto en nuestra empresa como en los usuarios. Nuestro objetivo es proporcionar una experiencia de evaluación justa y confiable, respaldada por una tecnología de vanguardia que garantiza la integridad en cada paso del proceso de prueba de manejo.
 
-### `npm start`
+1) Inicio de sesión:
+El software ofrece un sistema de inicio de sesión seguro para los usuarios. Cada usuario puede crear una cuenta personalizada y acceder a su perfil individual. Esto permite realizar un seguimiento de los progresos, guardar las puntuaciones y personalizar las preferencias según sus necesidades.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+2) Test de manejo (preguntas):
+El simulador presenta una amplia variedad de preguntas relacionadas con las normas de tráfico, señales viales, reglamentos de conducción y situaciones de emergencia. Los usuarios pueden elegir entre diferentes niveles de dificultad, desde principiante hasta avanzado, y practicar en función de sus habilidades actuales. Cada prueba de manejo se genera de forma aleatoria, lo que garantiza una experiencia de aprendizaje dinámica y desafiante.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+3) Test con cámara activada:
+Una de las características distintivas del software es su capacidad para utilizar la cámara del dispositivo del usuario durante la prueba. Esta función permite la supervisión en tiempo real y garantiza la integridad del proceso. El software analiza la transmisión de video para detectar posibles irregularidades, como la ausencia del conductor, la presencia de más de una persona en el vehículo o cambios en la identidad del conductor. Si se detecta alguna de estas situaciones, el software tomará medidas inmediatas y expulsará al usuario del test.
 
-### `npm test`
+4) Retroalimentación y evaluación:
+Al finalizar cada prueba de manejo, el software proporciona retroalimentación detallada y precisa sobre el desempeño del usuario. Esto incluye puntuaciones, evaluaciones de habilidades específicas y recomendaciones personalizadas para mejorar. Los usuarios también tienen la opción de revisar sus respuestas y aprender de sus errores para un progreso continuo.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+5) Entorno virtual realista:
+El simulador crea un entorno virtual realista que reproduce diferentes escenarios de conducción, como calles urbanas, carreteras interurbanas y situaciones de tráfico intenso. Los gráficos de alta calidad y los efectos de sonido envolventes contribuyen a una experiencia inmersiva y emocionante.
